@@ -1,0 +1,5 @@
+print("Hello PassionPay! This is basic programming study.")
+print("The content of the week 1 study is to collaborate on this code file one by one.")
+print("On the next GitHub link, the rest of you merge the code line by line to complete the result.")
+print("Please take pictures of your activities(also capture the study result with the procedure) and upload them to the google drive when you are done with the study.")
+print("Thank you for your hard work!")
