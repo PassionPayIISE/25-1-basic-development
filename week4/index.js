@@ -4,7 +4,7 @@ let person = {
     isEmployed : false,
     address : undefined,
     pet : null,
-}
+    }
 
 let mixed = [1, 2, 3, "four", false]; 
 

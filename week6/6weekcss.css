@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(187, 51, 14);
+}
+.icon {
+    font-family: 'Material Symbols Outlined';
+    font-size: 8rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.wrap{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+.material-symbols-outlined {
+/* //font-size: 10rem; */
+} 
+
+.lg-text {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.sm-text{
+    font-size: 1.5rem;
+
+}
+
+#dynamic {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    border-right: 2px solid white;
+    animation: 
+        typing 2.5s steps(10, end) forwards;
+    position: relative;
+    display: inline-block;
+}
+#dynamic::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background-color: white;
+    animation: blink 0.8s step-end infinite;
+}
+
+#dynamic.active::after{
+    display: none;
+}
+
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 10ch } 
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1 }
+    50% { opacity: 0 }
+}
