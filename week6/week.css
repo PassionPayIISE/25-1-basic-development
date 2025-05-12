@@ -1,0 +1,46 @@
+/* 기본 스타일 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1e1e2f;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 전체 컨테이너 중앙 정렬 */
+.container {
+  text-align: center;
+}
+
+/* fire 아이콘 */
+.fire-icon {
+  font-size: 80px;
+  color: orange;
+  margin-bottom: 20px;
+}
+
+/* 제목 스타일 */
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  white-space: nowrap;
+  border-right: 3px solid white;
+  width: fit-content;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* 부제목 스타일 */
+.subtitle {
+  font-size: 1.5rem;
+  margin-top: 15px;
+  color: #cccccc;
+}
