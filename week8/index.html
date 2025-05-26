@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가계부 앱</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>가계부</h1>
+        <form id="transaction-form">
+            <input type="number" id="amount" placeholder="금액 (수입 + / 지출 -)" required>
+            <select id="category">
+                <option>식비</option>
+                <option>교통</option>
+                <option>문화</option>
+                <option>쇼핑</option>
+                <option>기타</option>
+            </select>
+            <input type="text" id="description" placeholder="설명">
+            <input type="date" id="date">
+            <button type="submit">추가</button>
+        </form>
+
+        <div class="summary">
+            <p>수입: <span id="income">0</span>원</p>
+            <p>지출: <span id="expense">0</span>원</p>
+            <p>잔액: <span id="balance">0</span>원</p>
+        </div>
+
+        <h2>지출 내역</h2>
+        <table id="transaction-table">
+            <thead>
+                <tr>
+                    <th>날짜</th>
+                    <th>카테고리</th>
+                    <th>설명</th>
+                    <th>금액</th>
+                    <th>삭제</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <h2>카테고리별 지출</h2>
+        <canvas id="category-chart" width="300" height="300"></canvas>
+
+        <h2>월별 변화량</h2>
+        <div id="monthly-change"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
