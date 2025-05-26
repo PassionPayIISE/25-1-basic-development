@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>가계부</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>가계부</h1>
+  <form id="entryForm">
+    <input type="number" id="amount" placeholder="금액 (양수: 수입 / 음수: 지출)" required />
+    <select id="category">
+      <option value="식비">식비</option>
+      <option value="교통">교통</option>
+      <option value="문화">문화</option>
+      <option value="기타">기타</option>
+    </select>
+    <input type="text" id="description" placeholder="설명" />
+    <input type="date" id="date" />
+    <button type="submit">입력</button>
+  </form>
+
+  <div id="summary">
+    <p>수입: <span id="income">0</span> 원</p>
+    <p>지출: <span id="expense">0</span> 원</p>
+    <p>잔액: <span id="balance">0</span> 원</p>
+  </div>
+
+  <h2>지출 목록</h2>
+  <table id="entryTable">
+    <thead>
+      <tr>
+        <th>날짜</th>
+        <th>금액</th>
+        <th>카테고리</th>
+        <th>설명</th>
+        <th>삭제</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>카테고리별 지출 비율</h2>
+  <canvas id="categoryChart" width="300" height="300"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
