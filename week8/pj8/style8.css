@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #7749f8;
+  --primary-light: #b8aefc;
+  --dark: #333;
+  --gray: #888;
+  --border: #eee;
+  --danger: #f44336;
+  --success: #4caf50;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f1f3f5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: var(--dark);
+}
+
+.app {
+  width: 100%;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
