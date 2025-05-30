@@ -1,0 +1,154 @@
+const addBtn = document.getElementById("add-task");
+const taskInput = document.getElementById("task-input");
+const todosList = document.getElementById("todos-list");
+const filters = document.querySelectorAll(".filter");
+const itemsLeft = document.getElementById("items-left");
+const clearBtn = document.getElementById("clear-completed");
+const emptyState = document.querySelector(".empty-state");
+const dateElement = document.getElementById("date");
+
+let todos = [];
+let currentFilter = "all";
+
+function setDate() {
+  const today = new Date();
+  const options = { weekday: "long", month: "short", day: "numeric" };
+  dateElement.textContent = today.toLocaleDateString("en-US", options);
+}
+
+function saveTodos() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function loadTodos() {
+  const stored = localStorage.getItem("todos");
+  if (stored) {
+    todos = JSON.parse(stored);
+    renderTodos();
+  }
+}
+
+function addTodo(text) {
+  if (!text.trim()) return;
+  const todo = {
+    id: Date.now(),
+    text,
+    completed: false,
+  };
+  todos.push(todo);
+  saveTodos();
+  renderTodos();
+  taskInput.value = "";
+}
+
+function toggleTodo(id) {
+  todos = todos.map(todo =>
+    todo.id === id ? { ...todo, completed: !todo.completed } : todo
+  );
+  saveTodos();
+  renderTodos();
+}
+
+function deleteTodo(id) {
+  todos = todos.filter(todo => todo.id !== id);
+  saveTodos();
+  renderTodos();
+}
+
+function updateItemsCount() {
+  const count = todos.filter(todo => !todo.completed).length;
+  itemsLeft.textContent = `${count} item${count !== 1 ? 's' : ''} left`;
+}
+
+function checkEmptyState() {
+  const filtered = filterTodos(currentFilter);
+  if (filtered.length === 0) {
+    emptyState.classList.remove("hidden");
+  } else {
+    emptyState.classList.add("hidden");
+  }
+}
+
+function filterTodos(filter) {
+  switch (filter) {
+    case "active":
+      return todos.filter(todo => !todo.completed);
+    case "completed":
+      return todos.filter(todo => todo.completed);
+    default:
+      return todos;
+  }
+}
+
+function renderTodos() {
+  todosList.innerHTML = "";
+  const filteredTodos = filterTodos(currentFilter);
+
+  filteredTodos.forEach(todo => {
+    const li = document.createElement("li");
+    li.classList.add("todo-item");
+    if (todo.completed) li.classList.add("completed");
+
+    const label = document.createElement("label");
+    label.classList.add("checkbox-container");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.classList.add("todo-checkbox");
+    checkbox.checked = todo.completed;
+    checkbox.addEventListener("change", () => toggleTodo(todo.id));
+
+    const checkMark = document.createElement("span");
+    checkMark.classList.add("check-mark");
+
+    label.appendChild(checkbox);
+    label.appendChild(checkMark);
+
+    const textSpan = document.createElement("span");
+    textSpan.classList.add("todo-item-text");
+    textSpan.textContent = todo.text;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-button");
+    deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`;
+    deleteBtn.addEventListener("click", () => deleteTodo(todo.id));
+
+    li.appendChild(label);
+    li.appendChild(textSpan);
+    li.appendChild(deleteBtn);
+    todosList.appendChild(li);
+  });
+
+  updateItemsCount();
+  checkEmptyState();
+}
+
+addBtn.addEventListener("click", () => addTodo(taskInput.value));
+taskInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") addTodo(taskInput.value);
+});
+
+clearBtn.addEventListener("click", () => {
+  todos = todos.filter(todo => !todo.completed);
+  saveTodos();
+  renderTodos();
+});
+
+filters.forEach(filter => {
+  filter.addEventListener("click", () => {
+    currentFilter = filter.getAttribute("data-filter");
+    setActiveFilter(currentFilter);
+    renderTodos();
+  });
+});
+
+function setActiveFilter(filter) {
+  filters.forEach(f => {
+    f.classList.toggle("active", f.getAttribute("data-filter") === filter);
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  setDate();
+  loadTodos();
+});

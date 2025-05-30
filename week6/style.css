@@ -1,0 +1,52 @@
+/* 마진 최소화 */
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+/* 배경 색 변경 */
+body{
+    background-color: darkslateblue;
+}
+.wrap{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    /* 주의사항: 아이콘 폰트는 css의 텍스트와 관련된 속성 그대로 적용 가능 */
+
+}
+
+.material-symbols-outlined{
+    font-size:10rem;
+}
+.lg--text{
+    font-size:2rem;
+    font-weight: bold;
+    margin-bottom:5px;
+}
+.sm-text{
+    font-size:1.5rem;
+}
+/* 깜빡이기 */
+/*커서 만들기*/
+#dynamic{
+    position: relative;
+    display: inline-block; /*p태그의 크기 조절*/
+}
+#dynamic::after{
+    content:"";
+    display:block;
+    position:absolute;
+    top:0;
+    right:-10px;
+    width:4px;
+    height: 100%;
+    background-color: white;
+}
+/*커서 사라지게 만들기*/
+#dynamic.active::after{
+    display:none;
+}
